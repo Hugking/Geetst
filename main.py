@@ -80,9 +80,10 @@ def geetest():
     encrypt_key = js_compile.call("ce")
     w1 = js_compile.call("get_w1", gt, challenge, encrypt_key)
 
-    url_version = f"https://api.geetest.com/gettype.php?gt={gt}&callback=geetest_{int(time.time() * 1000)}"
-    res = S.get(url_version, headers=headers, proxies=proxies).content.decode("unicode-escape")
-    print("init:", json.loads(re.search("geetest_\d+\((.*?)\)", res).group(1)))
+    # url_version = f"https://api.geetest.com/gettype.php?gt={gt}&callback=geetest_{int(time.time() * 1000)}"
+    # res = S.get(url_version, headers=headers, proxies=proxies).content.decode("unicode-escape")
+    # print("init:", json.loads(re.search("geetest_\d+\((.*?)\)", res).group(1)))
+
     time.sleep(random.randint(0, 1))
     c_s_url = f"https://api.geetest.com/get.php?gt={gt}&challenge={challenge}&lang=zh-cn&pt=0&client_type=web&w={w1}&callback=geetest_{int(time.time() * 1000)}"
     res = S.get(url=c_s_url, headers=headers, proxies=proxies).content.decode("unicode-escape")

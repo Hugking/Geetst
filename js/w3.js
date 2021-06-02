@@ -1,5 +1,17 @@
+const jsdom = require("jsdom");
+const canvas = require('canvas');
+const {JSDOM} = jsdom;
+const dom = new JSDOM(`<!DOCTYPE html><p>Hello world</p>`);
+
+window = dom.window;
+document = window.document;
+window.navigator = {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+};
+
 // 参数3
-var window = new Object();
+
+// var window = new Object();
 
 function U(e, t) {
     var r = t["slice"](-2),
@@ -2055,6 +2067,45 @@ aqBm["tsAL"] = function (e) {
     return Object["prototype"]["toString"]["call"](e) === "[object Array]";
 };
 
+function pZJs() {
+}
+
+pZJs["prototype"] = {
+    "uQIf": function () {
+        var e = this;
+        return window["performance"] && window["performance"]["timing"] && e["vZxe"]() || -1;
+    },
+    "vZxe": function () {
+        var e = window["performance"]["timing"];
+        var t = this;
+        var r = {};
+        r = {
+            "a": e["navigationStart"],
+            "b": e["unloadEventStart"],
+            "c": e["unloadEventEnd"],
+            "d": e["redirectStart"],
+            "e": e["redirectEnd"],
+            "f": e["fetchStart"],
+            "g": e["domainLookupStart"],
+            "h": e["domainLookupEnd"],
+            "i": e["connectStart"],
+            "j": e["connectEnd"],
+            "k": e["secureConnectionStart"],
+            "l": e["requestStart"],
+            "m": e["responseStart"],
+            "n": e["responseEnd"],
+            "o": e["domLoading"],
+            "p": e["domInteractive"],
+            "q": e["domContentLoadedEventStart"],
+            "r": e["domContentLoadedEventEnd"],
+            "s": e["domComplete"],
+            "t": e["loadEventStart"],
+            "u": e["loadEventEnd"]
+        };
+        return r;
+    }
+};
+
 function get_w(arr, key_c, key_s, gt, challenge, encryptKey, lastPoint, passtime) {
     var nDVz = function (e, t, r) {
         if (!t || !r) {
@@ -2177,37 +2228,9 @@ function get_w(arr, key_c, key_s, gt, challenge, encryptKey, lastPoint, passtime
         "lang": "zh-cn",
         "userresponse": U(lastPoint, challenge), // e 为落点距离
         "passtime": passtime,
-        "imgload": 70,
+        "imgload": 70 + Math.floor(Math.random() * 10),
         "aa": t,// 滑动轨迹的加密字符
-        "ep": {
-            "v": "7.8.1",
-            "te": false,
-            "me": true,
-            "tm": {
-                "a": 1622093669906,
-                "b": 1622093670176,
-                "c": 1622093670176,
-                "d": 0,
-                "e": 0,
-                "f": 1622093669908,
-                "g": 1622093669922,
-                "h": 1622093669936,
-                "i": 1622093669936,
-                "j": 1622093669954,
-                "k": 1622093669944,
-                "l": 1622093669954,
-                "m": 1622093670155,
-                "n": 1622093670158,
-                "o": 1622093670180,
-                "p": 1622093670385,
-                "q": 1622093670385,
-                "r": 1622093670387,
-                "s": 1622093670688,
-                "t": 1622093670689,
-                "u": 1622093670689
-            },
-            "td": -1
-        } //基础信息 window["performance"] && window["performance"]["timing"] && e["vZxe"]() || -1
+        "ep": pZJs.prototype["uQIf"]()
     };
 
     o["rp"] = Q(gt + challenge["slice"](0, 32) + o["passtime"]);

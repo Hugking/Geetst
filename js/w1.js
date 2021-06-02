@@ -1,4 +1,15 @@
-var window = new Object();
+const jsdom = require("jsdom");
+const canvas = require('canvas');
+const {JSDOM} = jsdom;
+const dom = new JSDOM(`<!DOCTYPE html><p>Hello world</p>`);
+
+window = dom.window;
+document = window.document;
+window.navigator = {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+};
+
+// var window = new Object();
 var window_config = {
     "LINK": 12,
     "SCRIPT": 5,
@@ -47,7 +58,10 @@ var window_config = {
     "jsFonts": "Arial,ArialBlack,ArialNarrow,Calibri,Cambria,CambriaMath,ComicSansMS,Consolas,Courier,CourierNew,Georgia,Helvetica,Impact,LucidaConsole,LucidaSansUnicode,MicrosoftSansSerif,MSGothic,MSPGothic,MSSansSerif,MSSerif,PalatinoLinotype,SegoePrint,SegoeScript,SegoeUI,SegoeUILight,SegoeUISemibold,SegoeUISymbol,Tahoma,Times,TimesNewRoman,TrebuchetMS,Verdana,Wingdings",
     "mediaDevices": -1
 }
-var need_keys = ["textLength", "HTMLLength", "documentMode", "A", "ARTICLE", "ASIDE", "AUDIO", "BASE", "BUTTON", "CANVAS", "CODE", "IFRAME", "IMG", "INPUT", "LABEL", "LINK", "NAV", "OBJECT", "OL", "PICTURE", "PRE", "SECTION", "SELECT", "SOURCE", "SPAN", "STYLE", "TABLE", "TEXTAREA", "VIDEO", "screenLeft", "screenTop", "screenAvailLeft", "screenAvailTop", "innerWidth", "innerHeight", "outerWidth", "outerHeight", "browserLanguage", "browserLanguages", "systemLanguage", "devicePixelRatio", "colorDepth", "userAgent", "cookieEnabled", "netEnabled", "screenWidth", "screenHeight", "screenAvailWidth", "screenAvailHeight", "localStorageEnabled", "sessionStorageEnabled", "indexedDBEnabled", "CPUClass", "platform", "doNotTrack", "timezone", "canvas2DFP", "canvas3DFP", "plugins", "maxTouchPoints", "flashEnabled", "javaEnabled", "hardwareConcurrency", "jsFonts", "timestamp", "performanceTiming", "internalip", "mediaDevices", "DIV", "P", "UL", "LI", "SCRIPT", "deviceorientation", "touchEvent"]
+
+var T = window["document"],
+    I = window["navigator"];
+
 // 生成密钥
 var ce = function () {
     function S4() {
@@ -915,6 +929,16 @@ var Q = function () {
     return Nsiv;
 }();
 
+var P = function () {
+    var e = T["createElement"]("canvas");
+    var t = e["getContext"] && e["getContext"]("2d");
+    var r = /msie/i["test"](I["userAgent"]);
+    return !t && r;
+}();
+
+var O = /msie 6\.0/i["test"](I["userAgent"]);
+var F = /msie 7\.0/i["test"](I["userAgent"]);
+
 var ge = function () {
     "use strict";
 
@@ -1748,8 +1772,8 @@ var u = {
 
 function pkvk() {
     var e = this;
-    // e["TtVX"] = e["lUye"]();
-    e["TtVX"] = window_config;
+    e["TtVX"] = e["lUye"]();
+    // e["TtVX"] = window_config;
 }
 
 pkvk["prototype"] = {
@@ -2346,6 +2370,7 @@ hHhC["GPaV"] = function (e) {
 function get_w1(gt, challenge, encryptKey) {
     var n = new Q()["encrypt"](encryptKey);
     var e = new pkvk()["jGCG"]();
+    console.log("e", e)
     var Config = {
         "gt": gt,
         "challenge": challenge,
@@ -2372,10 +2397,10 @@ function get_w1(gt, challenge, encryptKey) {
     return a + n;
 }
 
-// var gt = "afb55317868a27591e984c714e11f512"
-// var challenge = "86eb194143089fade7c317ea81e483dd"
-// var encryptKey = ce()
-// console.log(get_w1(gt, challenge, encryptKey))
+var gt = "afb55317868a27591e984c714e11f512"
+var challenge = "86eb194143089fade7c317ea81e483dd"
+var encryptKey = ce()
+console.log(get_w1(gt, challenge, encryptKey))
 function le() {
     return new Date()["getTime"]();
 }
